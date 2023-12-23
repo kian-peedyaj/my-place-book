@@ -1,14 +1,9 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-} from "react-router-dom";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
+import UserPlaces from "./places/pages/UserPlaces";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 
 const App = () => {
@@ -17,8 +12,9 @@ const App = () => {
       <MainNavigation />
       <main>
         <Routes>
-          <Route path="/users" element={<Users />}></Route>
+          <Route path="/" element={<Users />}></Route>
           <Route path="/places/new" element={<NewPlace />}></Route>
+          <Route path="/:userID/places" element={<UserPlaces />}></Route>
           <Route path="*" element={<h1>Oops! Page not found.</h1>}></Route>
         </Routes>
       </main>
