@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
@@ -10,7 +11,36 @@ import useForm from "../../shared/hooks/form";
 
 import "../../shared/style/Form.css";
 
-const NewPlace = () => {
+const DUMMY_PLACES = [
+  {
+    id: "p1",
+    title: "Taj Mahal",
+    imageURL:
+      "https://i.natgeofe.com/n/8eba070d-14e5-4d07-8bab-9db774029063/93080_4x3.jpg",
+    description: "The monument is one of the seven wonders of the world.",
+    address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
+    creator: "u1",
+    coordinates: {
+      lat: 27.1751448,
+      lng: 78.0421422,
+    },
+  },
+  {
+    id: "p2",
+    title: "Taj Mahal",
+    imageURL:
+      "https://i.natgeofe.com/n/8eba070d-14e5-4d07-8bab-9db774029063/93080_4x3.jpg",
+    description: "The monument is one of the seven wonders of the world.",
+    address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
+    creator: "u2",
+    coordinates: {
+      lat: 27.1751448,
+      lng: 78.0421422,
+    },
+  },
+];
+
+const UpdatePlace = () => {
   const [formState, inputChangeHandler] = useForm(
     {
       title: {
@@ -21,13 +51,20 @@ const NewPlace = () => {
         value: "",
         isValid: false,
       },
-      address: {
-        value: "",
-        isValid: false,
-      },
     },
     false
   );
+  const { placeID } = useParams();
+
+  const identifiedPlace =
+    DUMMY_PLACES.find((place) => place.id === placeID) || {};
+
+  if (!identifiedPlace)
+    return (
+      <div className="center">
+        <h2>Sorry, could not find the place!</h2>
+      </div>
+    );
 
   const formSubmit = (event) => {
     event.preventDefault();
@@ -44,6 +81,7 @@ const NewPlace = () => {
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter a valid title."
         onInput={inputChangeHandler}
+        initialValue={identifiedPlace.title}
       />
       <Input
         id="description"
@@ -52,20 +90,14 @@ const NewPlace = () => {
         validators={[VALIDATOR_MINLENGTH(5)]}
         errorText="Description should have atleast 5 characters."
         onInput={inputChangeHandler}
+        initialValue={identifiedPlace.description}
       />
-      <Input
-        id="address"
-        type="text"
-        label="Address"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid address."
-        onInput={inputChangeHandler}
-      />
+
       <Button type="submit" disabled={!formState.isValid}>
-        ADD PLACE
+        UPDATE PLACE
       </Button>
     </form>
   );
 };
 
-export default NewPlace;
+export default UpdatePlace;

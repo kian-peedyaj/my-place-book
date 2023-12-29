@@ -9,8 +9,7 @@ const DUMMY_PLACES = [
     title: "Taj Mahal",
     imageURL:
       "https://i.natgeofe.com/n/8eba070d-14e5-4d07-8bab-9db774029063/93080_4x3.jpg",
-    description:
-      "17th-century, Mughal-style, marble mausoleum with minarets, a mosque & famously symmetrical gardens.",
+    description: "The monument is one of the seven wonders of the world.",
     address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
     creator: "u1",
     coordinates: {
@@ -23,8 +22,7 @@ const DUMMY_PLACES = [
     title: "Taj Mahal",
     imageURL:
       "https://i.natgeofe.com/n/8eba070d-14e5-4d07-8bab-9db774029063/93080_4x3.jpg",
-    description:
-      "17th-century, Mughal-style, marble mausoleum with minarets, a mosque & famously symmetrical gardens.",
+    description: "The monument is one of the seven wonders of the world.",
     address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
     creator: "u2",
     coordinates: {
