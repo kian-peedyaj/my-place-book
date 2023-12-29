@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import useForm from "../../shared/hooks/form";
+import useForm from "../../shared/hooks/form-hook";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -11,6 +11,7 @@ import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
 
 import "../../shared/style/Form.css";
+import AuthContext from "../../shared/context/auth-context";
 
 const SignIn = (props) => {
   const [formState, inputChangeHandler] = useForm(
@@ -26,11 +27,13 @@ const SignIn = (props) => {
     },
     false
   );
+  const auth = useContext(AuthContext);
 
   const signIn = (event) => {
     event.preventDefault();
     console.log("Signing in...");
     console.log(formState);
+    auth.signIn();
   };
 
   return (

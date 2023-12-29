@@ -7,7 +7,7 @@ const Auth = () => {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
 
   const toggleMode = () => {
-    setIsSignUpMode(!isSignUpMode);
+    setIsSignUpMode((previousMode) => !previousMode);
   };
 
   const signUpForm = <SignUp toggleMode={toggleMode} />;
